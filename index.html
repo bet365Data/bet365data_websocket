@@ -58,8 +58,9 @@
     });
     var socket = io("http://api.bet365data.com", {
         secure: true,
-        path: 'http://api.bet365data.com/socket.io',
-        transports: ['websocket']
+        origins: '*:*',
+        path: '/socket.io',
+        // transports: ['websocket']
     });
     var interval;
     var testPush = io("/" + localStorage.getItem("action"))
