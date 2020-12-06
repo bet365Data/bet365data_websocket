@@ -3,7 +3,6 @@
 
 <head>
     <title>bet365data-Socket.IO</title>
-    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -57,13 +56,19 @@
         });
     });
     var socket = io("http://api.bet365data.com", {
+        // cors: {
+        //     origins: "http://api.bet365data.com",
+        //     credentials: true,
+        //     secure: true
+        // },
+        origin: "http://api.bet365data.com",
+        credentials: true,
         secure: true,
-        origins: '*:*',
         path: '/socket.io',
         // transports: ['websocket']
     });
     var interval;
-    var testPush = io("/" + localStorage.getItem("action"))
+    var testPush = io("http://api.bet365data.com/" + localStorage.getItem("action"))
     if (localStorage.getItem("action") != null && localStorage.getItem("action") != null)
         interval = setInterval(function () {
             testPush.emit(localStorage.getItem("action"), localStorage.getItem("token"), function (data) {
